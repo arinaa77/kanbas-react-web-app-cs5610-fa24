@@ -322,7 +322,7 @@ export default function Lab1() {
 
                 {/* Github Link */}
                 Please
-                <a id="wd-github" href="https://github.com/arinaa77/kanbas-react-web-app"> click here </a>
+                <a id="wd-github" href="https://github.com/arinaa77/kanbas-react-web-app-cs5610-fa24"> click here </a>
                 to get to github<br />
             </div>
         </div>
