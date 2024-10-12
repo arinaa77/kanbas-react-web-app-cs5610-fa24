@@ -1,10 +1,30 @@
+import { Link, useParams } from "react-router-dom";
+import * as db from "../../Database";
+
+
 export default function AssignmentEditor() {
+    const { cid, aid } = useParams();
+    console.log("Course ID (cid):", cid); // Debugging line
+    console.log("Assignment ID (aid):", aid); // Debugging line
+    console.log("Assignments Data:", db.assignments); // Existing debug
+
+    const assignment = db.assignments.find((assignment: any) => assignment._id === aid);
+
+    if (!assignment) {
+        return <div>Assignment not found</div>;
+    }
+
     return (
         <div id="wd-assignments-editor" className="container mt-4">
             {/* Assignment Name */}
             <div className="mb-3">
                 <label htmlFor="wd-name" className="form-label">Assignment Name</label>
-                <input type="text" className="form-control" id="wd-name" value="A1" />
+                <input
+                    type="text"
+                    className="form-control"
+                    id="wd-name"
+                    value={assignment.title}
+                />
             </div>
 
             {/* Description */}
@@ -14,40 +34,21 @@ export default function AssignmentEditor() {
                     id="wd-description"
                     rows={6}
                     style={{ lineHeight: "2", textAlign: "left" }} // Ensure line height and text alignment
-                    defaultValue={`The assignment is available online.
-Submit a link to the landing page of your Web application running on Netlify.
-The landing page should include the following: 
-• Your full name and section 
-• Links to each of the lab assignments 
-• Link to the Kanbas application 
-• Links to all relevant source code repositories 
-The Kanbas application should include a link to navigate back to the landing page.`}>
+                    defaultValue={assignment.description}
+                >
                 </textarea>
             </div>
-
-
-            {/* <div className="mb-3">
-                <p className="text-start" style={{ lineHeight: "1.8" }}>
-                    The assignment is <span style={{ color: "red" }}> available online.</span><br />
-                    Submit a link to the landing page of your Web application running on Netlify.<br />
-                    The landing page should include the following:
-                </p>
-                <ul className="text-start" style={{ lineHeight: "1.8" }}>
-                    <li>Your full name and section</li>
-                    <li>Links to each of the lab assignments</li>
-                    <li>Link to the Kanbas application</li>
-                    <li>Links to all relevant source code repositories</li>
-                </ul>
-                <p className="text-start" style={{ lineHeight: "1.8" }}>
-                    The Kanbas application should include a link to navigate back to the landing page.
-                </p>
-            </div> */}
 
             {/* Points */}
             <div className="mb-3 row text-end">
                 <label htmlFor="wd-points" className="col-sm-2 col-form-label">Points</label>
                 <div className="col-sm-10">
-                    <input type="number" className="form-control" id="wd-points" value={100} />
+                    <input
+                        type="number"
+                        className="form-control"
+                        id="wd-points"
+                        value={assignment.points}
+                    />
                 </div>
             </div>
 
@@ -136,20 +137,36 @@ The Kanbas application should include a link to navigate back to the landing pag
 
                         {/* Due */}
                         <div className="mb-3 mt-3">
-                            <label htmlFor="wd-due-date" className="form-label fw-bold">Due</label> {/* Bold Due label */}
-                            <input type="date" className="form-control" id="wd-due-date" value="2024-05-13" />
+                            <label htmlFor="wd-due-date" className="form-label fw-bold">Due</label>
+                            <input
+                                type="date"
+                                className="form-control"
+                                id="wd-due-date"
+                                value={assignment.dueDate}
+
+                            />
                         </div>
 
                         {/* Available From and Until */}
                         <div className="d-flex gap-3">
                             <div className="flex-grow-1">
                                 <label htmlFor="wd-available-from" className="form-label fw-bold">Available From</label>
-                                <input type="date" className="form-control" id="wd-available-from" value="2024-05-06" />
+                                <input
+                                    type="date"
+                                    className="form-control"
+                                    id="wd-available-from"
+                                    value={assignment.availableDate}
+                                    readOnly />
                             </div>
 
                             <div className="flex-grow-1">
                                 <label htmlFor="wd-available-until" className="form-label fw-bold">Until</label>
-                                <input type="date" className="form-control" id="wd-available-until" value="2024-05-20" />
+                                <input
+                                    type="date"
+                                    className="form-control"
+                                    id="wd-available-until"
+                                    value={assignment.dueDate}
+                                />
                             </div>
                         </div>
 
@@ -160,8 +177,8 @@ The Kanbas application should include a link to navigate back to the landing pag
 
                 {/* Save and Cancel Buttons */}
                 <div className="d-flex justify-content-end">
-                    <button className="btn btn-secondary me-1">Cancel</button>
-                    <button className="btn btn-danger me-1">Save</button>
+                    <Link to={`/Kanbas/Courses/${cid}/Assignments`} className="btn btn-secondary me-1">Cancel</Link>
+                    <Link to={`/Kanbas/Courses/${cid}/Assignments`} className="btn btn-danger me-1">Save</Link>
                 </div>
             </div>
         </div >

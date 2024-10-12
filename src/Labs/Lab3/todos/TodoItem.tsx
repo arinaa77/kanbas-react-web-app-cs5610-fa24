@@ -1,3 +1,4 @@
+// 2.4.10 Rendering a Data Structure
 const TodoItem = ({ todo = {
     done: true, title: 'Buy milk',
     status: 'COMPLETED'

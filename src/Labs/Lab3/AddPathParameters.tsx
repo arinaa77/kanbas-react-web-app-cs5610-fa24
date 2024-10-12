@@ -1,3 +1,4 @@
+// 2.6.3 Encoding Path Parameters
 import React from "react";
 import { useParams } from "react-router-dom";
 export default function AddPathParameters() {

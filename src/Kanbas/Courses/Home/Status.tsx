@@ -2,8 +2,6 @@ import { MdDoNotDisturbAlt } from "react-icons/md";
 import { FaCheckCircle, FaBullhorn, FaChartLine, FaBell, FaStream, FaHome } from "react-icons/fa";
 import { BiImport } from "react-icons/bi";
 import { LiaFileImportSolid } from "react-icons/lia";
-{/* Find more icons */ }
-
 
 export default function CourseStatus() {
     return (

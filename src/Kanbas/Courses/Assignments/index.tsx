@@ -2,9 +2,13 @@ import { FaSearch, FaPlus, FaEllipsisV, FaCheckCircle, FaFileAlt, FaCaretDown } 
 import { BsGripVertical } from 'react-icons/bs';
 import { IoEllipsisVertical } from "react-icons/io5";
 import { BsPlus } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import * as db from "../../Database";
 
 export default function Assignments() {
+    const { cid } = useParams();
+    const assignments = db.assignments.filter((assignment: any) => assignment.course === cid);
+
     return (
         <div className="container mt-4" id="wd-assignments">
             <div className="d-flex justify-content-between align-items-center mb-3">
@@ -57,89 +61,34 @@ export default function Assignments() {
                     </div>
 
                     <ul className="wd-assignments list-group rounded-0">
-                        {/* A1 */}
-                        <li className="wd-lesson list-group-item p-3 d-flex justify-content-between align-items-center" style={{ borderLeft: '4px solid green' }}>
-                            {/* Icons */}
-                            <div className="d-flex">
-                                <BsGripVertical className="me-2 fs-4" />
-                                <FaFileAlt className="me-2 fs-4 text-success" />
-                            </div>
-                            {/* Details */}
-                            <div>
-                                <div className="d-flex">
-                                    <Link to="/Kanbas/Courses/1234/Assignments/123" className="fs-5 me-2"
-                                        style={{ color: 'black', textDecoration: 'none', fontWeight: 'bold' }}>
-                                        A1
-                                    </Link>
+                        {assignments.map((assignment: any) => (
+                            <li
+                                key={assignment._id}
+                                className="wd-lesson list-group-item p-3 d-flex justify-content-between align-items-center"
+                                style={{ borderLeft: '4px solid green' }}
+                            >
+                                <div className="d-flex align-items-center">
+                                    <BsGripVertical className="me-2 fs-3" />
+                                    <FaFileAlt className="me-2 fs-4 text-success" />
                                 </div>
-                                <p className="text-muted mb-1">
-                                    <span className="text-danger">Multiple Modules</span> |
-                                    <b> Not available until</b> May 6 at 12:00am |
-                                    <b> Due</b> May 13 at 11:59pm | 100 pts
-                                </p>
-                            </div>
-                            {/* Buttons */}
-                            <div className="d-flex align-items-center">
-                                <FaCheckCircle className="text-success me-3 fs-5" />
-                                <FaEllipsisV className="text-secondary" />
-                            </div>
-                        </li>
-
-                        {/* A2 */}
-                        <li className="wd-lesson list-group-item p-3 d-flex justify-content-between align-items-center" style={{ borderLeft: '4px solid green' }}>
-                            {/* Icons */}
-                            <div className="d-flex">
-                                <BsGripVertical className="me-2 fs-4" />
-                                <FaFileAlt className="me-2 fs-4 text-success" />
-                            </div>
-                            {/* Details */}
-                            <div>
-                                <div className="d-flex">
-                                    <Link to="/Kanbas/Courses/1234/Assignments/124" className="fs-5 me-2"
-                                        style={{ color: 'black', textDecoration: 'none', fontWeight: 'bold' }}>
-                                        A2
+                                <div className="w-75">
+                                    <Link
+                                        to={`/Kanbas/Courses/${cid}/Assignments/${assignment._id}`}
+                                        className="fs-5 me-2"
+                                        style={{ color: 'black', textDecoration: 'none', fontWeight: 'bold' }}
+                                    >
+                                        {assignment.title}
                                     </Link>
+                                    <p className="text-muted mb-0">
+                                        <b>Due</b> {assignment.dueDate} | {assignment.points} pts
+                                    </p>
                                 </div>
-                                <p className="text-muted mb-1">
-                                    <span className="text-danger">Multiple Modules</span> |
-                                    <b> Not available until</b> May 13 at 12:00am |
-                                    <b> Due</b> May 20 at 11:59pm | 100 pts
-                                </p>
-                            </div>
-                            {/* Buttons */}
-                            <div className="d-flex align-items-center">
-                                <FaCheckCircle className="text-success me-3 fs-5" />
-                                <FaEllipsisV className="text-secondary" />
-                            </div>
-                        </li>
-
-                        {/* A3 */}
-                        <li className="wd-lesson list-group-item p-3 d-flex justify-content-between align-items-center" style={{ borderLeft: '4px solid green' }}>
-                            {/* Icons */}
-                            <div className="d-flex">
-                                <BsGripVertical className="me-2 fs-4" />
-                                <FaFileAlt className="me-2 fs-4 text-success" />
-                            </div>
-                            {/* Details */}
-                            <div>
-                                <div className="d-flex">
-                                    <Link to="/Kanbas/Courses/1234/Assignments/124" className="fs-5 me-2"
-                                        style={{ color: 'black', textDecoration: 'none', fontWeight: 'bold' }}>
-                                        A3
-                                    </Link>
+                                <div className="d-flex align-items-center">
+                                    <FaCheckCircle className="text-success me-3 fs-5" />
+                                    <FaEllipsisV className="text-secondary fs-5" />
                                 </div>
-                                <p className="text-muted mb-1">
-                                    <span className="text-danger">Multiple Modules</span> |
-                                    <b> Not available until</b> May 20 at 12:00am |
-                                    <b> Due</b> May 27 at 11:59pm | 100 pts
-                                </p>
-                            </div>
-                            {/* Buttons */}
-                            <div className="d-flex align-items-center">
-                                <FaCheckCircle className="text-success me-3 fs-5" />
-                                <FaEllipsisV className="text-secondary" />
-                            </div>
-                        </li>
+                            </li>
+                        ))}
                     </ul>
                 </li>
             </ul>
