@@ -13,7 +13,6 @@ export default function Courses() {
     const course = courses.find((course) => course._id === cid);
     const { pathname } = useLocation();
 
-
     return (
         <div id="wd-courses">
             <h2 className="text-danger">
@@ -31,8 +30,7 @@ export default function Courses() {
                         <Route path="Home" element={<Home />} />
                         <Route path="Modules" element={<Modules />} />
                         <Route path="Assignments" element={<Assignments />} />
-                        {/* <Route path="Assignments/:aid" element={<AssignmentEditor />} /> */}
-                        <Route path="/Kanbas/Courses/:cid/Assignments/:aid" element={<AssignmentEditor />} />
+                        <Route path="Assignments/:aid" element={<AssignmentEditor />} />
                         <Route path="People" element={<PeopleTable />} />
                     </Routes>
                 </div>

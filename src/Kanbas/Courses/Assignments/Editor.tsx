@@ -1,13 +1,8 @@
 import { Link, useParams } from "react-router-dom";
 import * as db from "../../Database";
 
-
 export default function AssignmentEditor() {
     const { cid, aid } = useParams();
-    console.log("Course ID (cid):", cid); // Debugging line
-    console.log("Assignment ID (aid):", aid); // Debugging line
-    console.log("Assignments Data:", db.assignments); // Existing debug
-
     const assignment = db.assignments.find((assignment: any) => assignment._id === aid);
 
     if (!assignment) {
@@ -96,7 +91,7 @@ export default function AssignmentEditor() {
                                 <label className="form-check-label" htmlFor="wd-text-entry">Text Entry</label>
                             </div>
                             <div className="form-check">
-                                <input className="form-check-input" type="checkbox" id="wd-website-url" checked />
+                                <input className="form-check-input" type="checkbox" id="wd-website-url" />
                                 <label className="form-check-label" htmlFor="wd-website-url">Website URL</label>
                             </div>
                             <div className="form-check">
