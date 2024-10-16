@@ -71,12 +71,12 @@ export default function Assignments() {
                                     <BsGripVertical className="me-2 fs-3" />
                                     <FaFileAlt className="me-2 fs-4 text-success" />
                                 </div>
-                                <div className="w-75">
+                                <div className="flex-grow-1 ms-3">
                                     <Link
                                         to={`/Kanbas/Courses/${cid}/Assignments/${assignment._id}`}
                                         className="fs-5 me-2"
                                         style={{ color: 'black', textDecoration: 'none', fontWeight: 'bold' }}
-                                    >
+                                    >git init
                                         {assignment.title}
                                     </Link>
                                     <p className="text-muted mb-0">
