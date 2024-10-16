@@ -76,7 +76,7 @@ export default function Assignments() {
                                         to={`/Kanbas/Courses/${cid}/Assignments/${assignment._id}`}
                                         className="fs-5 me-2"
                                         style={{ color: 'black', textDecoration: 'none', fontWeight: 'bold' }}
-                                    >git init
+                                    >
                                         {assignment.title}
                                     </Link>
                                     <p className="text-muted mb-0">
